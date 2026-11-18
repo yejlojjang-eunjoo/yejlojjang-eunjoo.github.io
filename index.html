@@ -2,8 +2,33 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eunjoo · 양은주</title>
+
+  <meta name="description" content="양은주 · Yang Eunjoo. 오일파스텔 그림과 음악을 좋아하고, 직접 써보고 고른 좋은 물건과 일상을 기록하는 공간입니다." />
+  <meta name="author" content="양은주" />
+  <meta name="theme-color" content="#12151d" />
+  <link rel="canonical" href="https://yejlojjang-eunjoo.github.io/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312151d'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23e8d5b7' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" />
+
+  <!-- 링크 미리보기 (카카오톡 · 트위터 · 페이스북) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="양은주 · Yang Eunjoo" />
+  <meta property="og:title" content="양은주 · Yang Eunjoo" />
+  <meta property="og:description" content="오일파스텔 그림과 음악을 좋아하고, 직접 써보고 고른 좋은 물건과 일상을 기록하는 공간입니다." />
+  <meta property="og:url" content="https://yejlojjang-eunjoo.github.io/" />
+  <meta property="og:image" content="https://yejlojjang-eunjoo.github.io/assets/og_eunjoo.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="은주 화보와 Eunjoo 사인" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="양은주 · Yang Eunjoo" />
+  <meta name="twitter:description" content="오일파스텔 그림과 음악을 좋아하고, 직접 써보고 고른 좋은 물건과 일상을 기록하는 공간입니다." />
+  <meta name="twitter:image" content="https://yejlojjang-eunjoo.github.io/assets/og_eunjoo.jpg" />
+
+  <link rel="preload" as="image" href="assets/eunjoo_bg_stussy.webp" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -262,6 +287,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+    }
+
+    /* 가로 그림은 잘리지 않게 두 칸 폭으로 크게 */
+    .gallery-item.is-wide {
+      grid-column: 1 / -1;
+      aspect-ratio: 998 / 721;
     }
 
     .gallery-caption {
@@ -285,7 +317,7 @@
 </head>
 <body>
   <div class="fixed-bg">
-    <img src="assets/eunjoo_bg_stussy.png" alt="은주 화보 배경" />
+    <img src="assets/eunjoo_bg_stussy.webp" alt="은주 화보 배경" width="1254" height="1254" fetchpriority="high" decoding="async" />
   </div>
 
   <section class="lockscreen">
@@ -304,7 +336,7 @@
     <section>
       <div class="section-title">About</div>
       <div class="glass-card about-card">
-        <img class="about-avatar" src="assets/eunjoo_bg_stussy.png" alt="은주 아바타" />
+        <img class="about-avatar" src="assets/eunjoo_bg_stussy.webp" alt="은주 아바타" width="124" height="124" loading="lazy" decoding="async" />
         <div class="about-text">
           <h2>양은주 · Yang Eunjoo</h2>
           <p>오일파스텔 그림과 음악을 좋아하고, 직접 써본 좋은 물건과 일상을 나눕니다.</p>
@@ -337,7 +369,7 @@
           <span class="link-arrow">↗</span>
         </a>
 
-        <a class="glass-card link-item" href="https://kmong.com" target="_blank" rel="noopener">
+        <a class="glass-card link-item" href="https://kmong.com/@%EC%84%B1%EC%8B%A4%ED%95%9C%EB%AA%A8%EB%9E%989164" target="_blank" rel="noopener">
           <div class="link-left">
             <div class="link-icon">🎨</div>
             <div class="link-info">
@@ -354,19 +386,19 @@
       <div class="section-title">Oil Pastel Gallery</div>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="assets/art_maple_water.png" alt="단풍과 물가" />
+          <img src="assets/art_maple_water.webp" alt="단풍과 물가" width="1122" height="1402" loading="lazy" decoding="async" />
           <div class="gallery-caption">단풍과 물가</div>
         </div>
         <div class="gallery-item">
-          <img src="assets/art_moon_tree.png" alt="달빛 아래 나무" />
+          <img src="assets/art_moon_tree.webp" alt="달빛 아래 나무" width="858" height="1301" loading="lazy" decoding="async" />
           <div class="gallery-caption">달빛 아래 나무</div>
         </div>
-        <div class="gallery-item">
-          <img src="assets/art_turquoise_sea.png" alt="에메랄드 바다" />
+        <div class="gallery-item is-wide">
+          <img src="assets/art_turquoise_sea.webp" alt="에메랄드 바다" width="998" height="721" loading="lazy" decoding="async" />
           <div class="gallery-caption">에메랄드 바다</div>
         </div>
         <div class="gallery-item">
-          <img src="assets/eunju_pastel_sky_polished.png" alt="노을 구름 하늘" />
+          <img src="assets/eunju_pastel_sky_polished.webp" alt="노을 구름 하늘" width="1254" height="1254" loading="lazy" decoding="async" />
           <div class="gallery-caption">노을 구름 하늘</div>
         </div>
       </div>
