@@ -296,6 +296,13 @@
       aspect-ratio: 998 / 721;
     }
 
+    /* 마지막 한 장은 가운데로 */
+    .gallery-item.is-solo {
+      grid-column: 1 / -1;
+      width: calc(50% - 6px);
+      justify-self: center;
+    }
+
     .gallery-caption {
       position: absolute;
       left: 0;
@@ -397,7 +404,7 @@
           <img src="assets/art_turquoise_sea.webp" alt="에메랄드 바다" width="998" height="721" loading="lazy" decoding="async" />
           <div class="gallery-caption">에메랄드 바다</div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item is-solo">
           <img src="assets/eunju_pastel_sky_polished.webp" alt="노을 구름 하늘" width="1254" height="1254" loading="lazy" decoding="async" />
           <div class="gallery-caption">노을 구름 하늘</div>
         </div>
