@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Eunjoo · 양은주</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --glass: rgba(16, 19, 27, 0.58);
+      --glass-border: rgba(255, 255, 255, 0.16);
+      --text: #f6f7fb;
+      --muted: rgba(235, 238, 248, 0.78);
+      --accent: #e8d5b7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #12151d;
+      color: var(--text);
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 전체 페이지 고정 배경 */
+    .fixed-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .fixed-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 60% 35%;
+    }
+
+    .fixed-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(12, 15, 22, 0.35) 0%,
+        rgba(12, 15, 22, 0.12) 40%,
+        rgba(12, 15, 22, 0.55) 100%
+      );
+    }
+
+    /* 1. 상단 잠금화면 히어로 */
+    .lockscreen {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100svh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 52px 24px 38px;
+      text-align: center;
+    }
+
+    .lock-top {
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.48);
+    }
+
+    .lock-date {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 4px;
+    }
+
+    .lock-time {
+      font-size: 68px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: #ffffff;
+    }
+
+    .lock-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .lock-bio {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .unlock-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .unlock-btn:hover {
+      background: rgba(255, 255, 255, 0.24);
+      transform: translateY(-2px);
+    }
+
+    /* 2. 하단 오픈 영역 (유리 카드) */
+    .open-space {
+      position: relative;
+      z-index: 1;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .section-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+    }
+
+    .about-card {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .about-avatar {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(232, 213, 183, 0.5);
+      flex-shrink: 0;
+    }
+
+    .about-text h2 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .about-text p {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 18px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .link-item:hover {
+      border-color: rgba(232, 213, 183, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .link-icon {
+      font-size: 21px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .link-info strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .link-info span {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .link-arrow {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--glass-border);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 20px 12px 10px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.94);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="fixed-bg">
+    <img src="assets/eunjoo_bg_stussy.png" alt="은주 화보 배경" />
+  </div>
+
+  <section class="lockscreen">
+    <div class="lock-top">
+      <div class="lock-date" id="lockDate">11월 18일 수요일</div>
+      <div class="lock-time" id="lockTime">13:45</div>
+    </div>
+
+    <div class="lock-bottom">
+      <p class="lock-bio">그림 그리고, 좋은 것들을 고르고 기록하는 공간</p>
+      <a href="#open" class="unlock-btn">아래로 내려서 구경하기 ↓</a>
+    </div>
+  </section>
+
+  <main id="open" class="open-space">
+    <section>
+      <div class="section-title">About</div>
+      <div class="glass-card about-card">
+        <img class="about-avatar" src="assets/eunjoo_bg_stussy.png" alt="은주 아바타" />
+        <div class="about-text">
+          <h2>양은주 · Yang Eunjoo</h2>
+          <p>오일파스텔 그림과 음악을 좋아하고, 직접 써본 좋은 물건과 일상을 나눕니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Open Links</div>
+      <div class="link-list">
+        <a class="glass-card link-item" href="https://cshop.naver.com/daily_yangpick" target="_blank" rel="noopener">
+          <div class="link-left">
+            <div class="link-icon">🛍️</div>
+            <div class="link-info">
+              <strong>데일리 양픽 (크리에이터샵)</strong>
+              <span>직접 써보고 고른 내돈내산 생활·간식 픽</span>
+            </div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+
+        <a class="glass-card link-item" href="https://blog.naver.com/20123034" target="_blank" rel="noopener">
+          <div class="link-left">
+            <div class="link-icon">✍️</div>
+            <div class="link-info">
+              <strong>say table (네이버 블로그)</strong>
+              <span>소소한 일상과 솔직한 후기 기록</span>
+            </div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+
+        <a class="glass-card link-item" href="https://kmong.com" target="_blank" rel="noopener">
+          <div class="link-left">
+            <div class="link-icon">🎨</div>
+            <div class="link-info">
+              <strong>디자인 스튜디오 (성실한모래9164)</strong>
+              <span>브랜드 로고 · 원페이지 홈페이지 제작</span>
+            </div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Oil Pastel Gallery</div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="assets/art_maple_water.png" alt="단풍과 물가" />
+          <div class="gallery-caption">단풍과 물가</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/art_moon_tree.png" alt="달빛 아래 나무" />
+          <div class="gallery-caption">달빛 아래 나무</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/art_turquoise_sea.png" alt="에메랄드 바다" />
+          <div class="gallery-caption">에메랄드 바다</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/eunju_pastel_sky_polished.png" alt="노을 구름 하늘" />
+          <div class="gallery-caption">노을 구름 하늘</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Eunjoo. All rights reserved.
+    </footer>
+  </main>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      const day = days[now.getDay()];
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('lockDate').textContent = `${month}월 ${date}일 ${day}`;
+      document.getElementById('lockTime').textContent = `${hh}:${mm}`;
+    }
+    updateClock();
+    setInterval(updateClock, 10000);
+  </script>
+</body>
+</html>
